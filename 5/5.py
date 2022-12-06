@@ -3,7 +3,7 @@ file1 = open('input5.txt', 'r')
 Lines = file1.readlines()
 
 
-debug = False
+debug = True
 sum = 0
 
 # A different measure
@@ -18,7 +18,7 @@ def insert_bottom_of_stack(stack_number, letter):
 
   if debug:
     print("Insert Letter {} on stack {}".format(letter, stack_number))
-    
+
   stacks[stack_number].insert(0, letter)
 
 
@@ -74,7 +74,6 @@ def print_top_of_stacks():
 
 line_count = 0
 
-# Strips the newline character
 for line in Lines:
 
     if line_count < 8:
@@ -96,7 +95,7 @@ for line in Lines:
           print ("Move # {} from {} to {}".format(number_to_move, from_column, to_column))
 
         if number_to_move and from_column and to_column:
-          single_crate_move_number_from_to(number_to_move, from_column - 1, to_column - 1)
+          multi_crate_move_number_from_to(number_to_move, from_column - 1, to_column - 1)
 
     # increment
     line_count += 1
