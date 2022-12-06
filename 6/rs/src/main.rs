@@ -39,13 +39,25 @@ hashset with homogenous tuples
 */
 
 
+
+// Show the bit flag concept
+//
+fn test_print() {
+    let mut buf = 0_u32;
+    let chars = "abcdef".to_string();
+
+    for c in chars.chars() {
+        buf |= 1 << (c as u8 - b'a');
+        println!("{} = {}", c, buf)
+    }
+}
      
 fn solution(input: &str, distinct_num: usize) -> Option<usize> {
     for i in 0..input.len() {
         let mut buf = 0_u32;
         let chars = &input[i..i + distinct_num];
         for c in chars.chars() {
-            print!("{}",c);
+            //print!("{}",c);
             buf |= 1 << (c as u8 - b'a');
         }
         if buf.count_ones() == distinct_num as u32 {
@@ -65,10 +77,14 @@ fn main() {
     let contents = fs::read_to_string(file_path)
         .expect("Should have been able to read the file");
 
-    match solution(&contents, 14) {
+
+    let window_size = 14;
+    test_print();
+
+    match solution(&contents, window_size) {
         Some(x) => {
             print!("\n");
-            println!("Solution 1 {}",x);
+            println!("Solution for window {} = {}",window_size,x);
         },
         None => {
             print!("No result");
